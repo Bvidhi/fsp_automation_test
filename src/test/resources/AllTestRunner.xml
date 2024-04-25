@@ -1,0 +1,10 @@
+<suite name="Parallel test suite" parallel="methods" thread-count="3">
+    <parameter name="baseURL" value="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"/>
+    <parameter name="headless" value="false"/>
+    <test name="Test Automation">
+        <parameter name="browserName" value="firefox"/>
+        <classes>
+            <class name="login.LoginTC"/>
+        </classes>
+    </test>
+</suite>
