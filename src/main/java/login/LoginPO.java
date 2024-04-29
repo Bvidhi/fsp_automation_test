@@ -1,20 +1,12 @@
 package login;
 
+import com.github.javafaker.Faker;
 import config.BaseTest;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.io.FileReader;
-import java.io.IOException;
-import java.time.Duration;
-import java.util.List;
-import java.util.Properties;
 
 public class LoginPO extends BaseTest {
 
@@ -25,73 +17,95 @@ public class LoginPO extends BaseTest {
 
     @FindBy(
             how = How.NAME,
-            using = "username"
+            using = "emailMobile"
     )
-    WebElement username;
+    WebElement emailMobile;
+
+    @FindBy(
+            how = How.XPATH,
+            using = "//button[text()='CONTINUE TO LOGIN']"
+    )
+    WebElement continueLoginButton;
+
+    @FindBy(
+            how = How.CSS,
+            using = ".toaster-message"
+    )
+    WebElement toasterMessage;
+
+    @FindBy(
+            how = How.XPATH,
+            using = "//h2[@content='Signup with CaratLane']"
+    )
+    WebElement headerText;
+
+    @FindBy(
+            how = How.XPATH,
+            using = "//h2[text()='Enter Password to Login']"
+    )
+    WebElement passwordPageHeader;
 
     @FindBy(
             how = How.NAME,
             using = "password"
     )
-    WebElement password;
+    WebElement passwordTextbox;
 
     @FindBy(
-            how = How.CLASS_NAME,
-            using = "orangehrm-login-button"
+            how = How.CSS,
+            using = "p.error"
     )
-    WebElement loginButton;
+    WebElement errorText;
 
     @FindBy(
             how = How.XPATH,
-            using = "//p[text()='Invalid credentials']"
+            using = "//button[text()='LOGIN']"
     )
-    WebElement alertMessage;
+    WebElement loginButton;
 
-    public WebElement getLoginButton() {
+    public WebElement getEmailMobile() {
+        return emailMobile;
+    }
+
+    public WebElement getContinueLoginButton() {
+        return continueLoginButton;
+    }
+
+    public WebElement getToasterMessage() {
+        return toasterMessage;
+    }
+
+    public WebElement getHeaderText() {
+        return headerText;
+    }
+
+    public WebElement getPasswordPageHeader() {
+        return passwordPageHeader;
+    }
+
+    public WebElement getPasswordTextbox() {
+        return passwordTextbox;
+    }
+
+    public WebElement getErrorText() {
+        return errorText;
+    }
+
+    public  WebElement getLoginButton() {
         return loginButton;
     }
 
-    public WebElement getPassword() {
-        return password;
+    public boolean verifyErrorForEmptyFields(){
+        if (getEmailMobile().getAttribute("class").contains("error"))
+            return true;
+        return false;
     }
 
-    public WebElement getUsername() {
-        return username;
+    public String getEmail(){
+        Faker faker = new Faker();
+        String email;
+        email = faker.name().firstName() + "@yopmail.com";
+        return  email;
     }
 
-    public WebElement getAlertMessage() {
-        return alertMessage;
-    }
-
-    public String getValueFromFile(String value) throws IOException {
-        Properties properties = new Properties();
-        properties.load(new FileReader(System.getProperty("user.dir") + "/src/main/resources/loginDetails.properties"));
-        return properties.getProperty(value);
-    }
-
-    public void enterUsernameAndPassword(String username, String password) {
-        getUsername().sendKeys(username);
-        getPassword().sendKeys(password);
-    }
-
-    public void clickOnWebElement(WebElement element){
-        element.click();
-    }
-
-    public void verifyAlertMessageForEmptyFields(){
-        String[] strings = new String[]{"username", "password"};
-        for (String string : strings) {
-            WebElement alert = new WebDriverWait(getDriver(), Duration.ofSeconds(20L)).
-                    until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='"+string+"']//parent::div//following-sibling::span")));
-            alert.isDisplayed();
-        }
-    }
-
-    public void verifyAlertMessageForInvalidData(){
-        getAlertMessage().isDisplayed();
-    }
-
-    public void verifyDashboardPage(){
-        getDriver().getCurrentUrl().contains("dashboard");
-    }
 }

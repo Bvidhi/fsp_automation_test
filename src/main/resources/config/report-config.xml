@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+    <configuration>
+        <!-- report theme -->
+        <!-- standard, dark -->
+        <theme>dark</theme>
+
+        <!-- document encoding -->
+        <!-- defaults to UTF-8 -->
+        <encoding>UTF-8</encoding>
+
+        <!-- protocol for script and stylesheets -->
+        <!-- defaults to https -->
+        <protocol>https</protocol>
+
+        <!-- title of the document -->
+        <documentTitle>FSP Demo Automation Test Report</documentTitle>
+
+        <!-- report name - displayed at top-nav -->
+        <reportName>
+            <img id="test">
+            <![CDATA[
+            <a href='https://fsp.co/' target='_blank'>
+                <img src='https://raw.githubusercontent.com/Bvidhi/fsp_automation_test/main/logo.png' width='150' height='45'/>
+            </a>
+            ]]>
+        </img></reportName>
+
+        <!-- report headline - displayed at top-nav, after reportHeadline -->
+        <reportHeadline></reportHeadline>
+
+        <!-- global date format override -->
+        <!-- defaults to yyyy-MM-dd -->
+        <dateFormat>EEEE, MMMM dd, yyyy, </dateFormat>
+
+            <timeFormat>hh:mm a, zzz</timeFormat>
+
+        <!-- custom javascript -->
+        <scripts>
+            <![CDATA[
+                $(document).ready(function() {
+	               $('.logo-content').hide();
+	               $('.logo-container').html('Test Report');
+                   document.querySelector('.logo-container').className = 'logo-container';
+                   var nav=document.querySelector('nav, nav .nav-wrapper i, nav a.button-collapse, .logo a, nav label');
+                   nav.style.background='#ffffff';
+                   var col=document.querySelector('.logo-container');
+                   col.style.backgroundColor='#2bbdb9';
+                   $('img').css('margin-top', '1px');
+                   var x = document.querySelectorAll('.nav-right li ');
+				           for (let i = 0; i < x.length; i++) {
+  				   		      x[i].style.borderLeftColor = "#2bbdb9";
+				           }
+				   var y = document.querySelectorAll('.nav-right li span');
+				           for (let i = 0; i < y.length; i++) {
+  				   		      y[i].style.color = "#000000";
+				           }
+				   var icon=document.querySelector('.nav-right li i');
+                   icon.style.color='#000000';
+                });
+            ]]>
+        </scripts>
+
+        <!-- custom styles -->
+        <styles>
+            <![CDATA[
+
+        ]]>
+        </styles>
+    </configuration>
+
+</extentreports>

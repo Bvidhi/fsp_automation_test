@@ -1,10 +1,17 @@
-<suite name="Parallel test suite" parallel="methods" thread-count="3">
-    <parameter name="baseURL" value="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"/>
+<suite name="Parallel test suite" parallel="methods" thread-count="1">
+    <listeners>
+        <listener class-name="config.listeners.AnnotationTransformer"/>
+    </listeners>
+    <parameter name="selGrid" value="false"/>
+    <parameter name="hubURL" value="http://172.23.12.230:4444"/>
+    <parameter name="mailConfig" value="false"/>
+    <parameter name="baseURL" value="https://www.caratlane.com/login"/>
     <parameter name="headless" value="false"/>
     <test name="Test Automation">
         <parameter name="browserName" value="firefox"/>
         <classes>
             <class name="login.LoginTC"/>
+            <class name="signup.SignupTC"/>
         </classes>
     </test>
 </suite>
