@@ -57,7 +57,7 @@ public class BaseTest{
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(20L, TimeUnit.SECONDS);
         } else if (browserName.equalsIgnoreCase("chrome")) {
-            WebDriverManager.chromiumdriver().setup();
+            System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"/driver/chromedriver.exe");
             ChromeOptions options = new ChromeOptions();
             if(headless){
                 options.addArguments("--headless");
@@ -113,10 +113,11 @@ public class BaseTest{
         return driver;
     }
 
-    @Parameters({"selGrid", "hubURL","browserName", "headless", "baseURL"})
+    @Parameters({"record","selGrid", "hubURL","browserName", "headless", "baseURL"})
     @BeforeMethod(alwaysRun = true)
-    public void launchBrowser(Method method, @Optional("false")boolean selGrid, String hubURL,@Optional("firefox")String browserName, @Optional("false")boolean headless, @Optional("https://www.irafinancialtrust.com/") String baseURL) throws Exception {
-        ScreenRecorderUtil.startRecord(""+method.getName());
+    public void launchBrowser(Method method, boolean record,@Optional("false")boolean selGrid, String hubURL,@Optional("firefox")String browserName, @Optional("false")boolean headless, @Optional("https://www.irafinancialtrust.com/") String baseURL) throws Exception {
+        if (record)
+            ScreenRecorderUtil.startRecord(""+method.getName());
         WebDriver driver;
         if (selGrid){
             driver = this.getRemoteDriver(browserName,hubURL);
@@ -134,9 +135,12 @@ public class BaseTest{
         getTest().log(LogStatus.INFO, "Open Browser and navigate to", "<a href=" + driver.getCurrentUrl() +  "target=_blank>" + driver.getCurrentUrl() + "</a>");
     }
 
+    @Parameters({"record"})
     @AfterMethod(alwaysRun = true)
-    public void afterMethod() throws Exception {
-        ScreenRecorderUtil.stopRecord();
+    public void afterMethod(boolean record) throws Exception {
+        if (record) {
+            ScreenRecorderUtil.stopRecord();
+        }
         getReporter().endTest(getTest());
         getReporter().flush();
         getDriver().quit();
@@ -151,6 +155,7 @@ public class BaseTest{
         }else {
             out.println("Email not sent");
         }
+
     }
 
     public void testLog(String stepName, String details) {

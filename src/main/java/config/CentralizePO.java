@@ -16,20 +16,20 @@ public class CentralizePO extends BaseTest{
     }
 
 
-    public void clickOnWebElement(WebElement element){
+    public boolean clickOnWebElement(WebElement element){
         element.click();
+        return true;
     }
 
-    public void elementIsDisplayed(WebElement element){
+    public boolean elementIsDisplayed(WebElement element){
         element.isDisplayed();
+        return true;
     }
 
-    public void verifyPageIsOpened(String pageName){
-        getDriver().getCurrentUrl().contains(pageName);
-    }
-
-    public void enterValue(WebElement element, String value){
+    public boolean enterValue(WebElement element, String value){
+        element.clear();
         element.sendKeys(value);
+        return true;
     }
 
     public String getValueFromFile(String value) throws IOException {

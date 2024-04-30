@@ -1,17 +1,30 @@
-<suite name="Parallel test suite" parallel="methods" thread-count="1">
+<suite name="Parallel test suite" parallel="tests" thread-count="2">
     <listeners>
         <listener class-name="config.listeners.AnnotationTransformer"/>
     </listeners>
-    <parameter name="selGrid" value="false"/>
-    <parameter name="hubURL" value="http://172.23.12.230:4444"/>
+    <parameter name="selGrid" value="true"/>
     <parameter name="mailConfig" value="false"/>
-    <parameter name="baseURL" value="https://www.caratlane.com/login"/>
     <parameter name="headless" value="false"/>
-    <test name="Test Automation">
-        <parameter name="browserName" value="firefox"/>
+    <parameter name="record" value="false"/>
+    <parameter name="hubURL" value="http://172.23.8.184:4444"/>
+    <parameter name="baseURL" value="https://www.caratlane.com/login"/>
+    <!--<groups>
+        <run>
+            <include name="111"/>
+        </run>
+    </groups>-->
+    <test name="Test Automation" parallel="methods" thread-count="1">
+        <parameter name="browserName" value="edge"/>
         <classes>
-            <class name="login.LoginTC"/>
-            <class name="signup.SignupTC"/>
+            <class name="login.LoginTC">
+                <!--<methods>
+                    <include name="login.*"/>
+                </methods>-->
+                <methods>
+                    <include name="login_01_LoginWithBlankFields"/>
+                </methods>
+            </class>
+            <!--<class name="signup.SignupTC"/>-->
         </classes>
     </test>
 </suite>

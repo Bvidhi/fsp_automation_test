@@ -5,6 +5,7 @@ import config.BaseTest;
 import config.CentralizePO;
 import login.LoginPO;
 import login.LoginTC;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.IOException;
 
@@ -36,15 +37,15 @@ public class SignupTC extends BaseTest {
             getTest().log(LogStatus.INFO, "Execution starts from SIGNUP_01");
 
             //Step 1 : Click on "Create an Account" button
-            centralize().clickOnWebElement(signup().getCreateAccountButton());
+            Assert.assertTrue(centralize().clickOnWebElement(signup().getCreateAccountButton()));
             testLog("Clicked on Create Account button", "The Signup page is opened");
 
             // Step 2 : Click on the "SIGN ME UP" button without entering any information into any required fields.
-            centralize().clickOnWebElement(signup().getSignUpButton());
+            Assert.assertTrue(centralize().clickOnWebElement(signup().getSignUpButton()));
             testLog("Click on the \"SIGN ME UP\" button without entering any information into any required fields.", "The alert warning message should be appear under the textboxes.");
 
             // Step 3 : Check if an alert warning message appears to confirm that the SIGN ME UP attempt failed due to empty fields.
-            signup().verifyErrorForEmptyFields();
+            Assert.assertTrue(signup().verifyErrorForEmptyFields());
             testLog("Check if an alert warning message appears to confirm that the SIGN ME UP attempt failed due to empty fields.", "The alert warning message should be appear on the screen.");
 
         }
@@ -57,23 +58,23 @@ public class SignupTC extends BaseTest {
         getTest().log(LogStatus.INFO, "Execution starts from SIGNUP_02");
 
         //Step 1 : Enter an existing user email into the email field
-        centralize().enterValue(signup().getEnterEmail(), centralize().getValueFromFile("email"));
+        Assert.assertTrue(centralize().enterValue(signup().getEnterEmail(), centralize().getValueFromFile("email")));
         testLog("Enter an existing user email into the email field", "OTP popup window should be displayed");
 
         // Step 2 : Verify enter OTP popup window is displayed
-        centralize().elementIsDisplayed(signup().getOtpPopup());
+        Assert.assertTrue(centralize().elementIsDisplayed(signup().getOtpPopup()));
         testLog("Verify enter OTP popup window is displayed", "The user should be able to enter OTP");
 
         // Step 3 : Enter OTP
-        centralize().enterValue(signup().getOtpTextBox(),signup().getOTP());
+        Assert.assertTrue(centralize().enterValue(signup().getOtpTextBox(),signup().getOTP()));
         testLog("Enter OTP", "The user should be able to click on the verify button.");
 
         // Step 4 : Click on Verify & Login button
-        centralize().clickOnWebElement(signup().getVerifyLoginButton());
+        Assert.assertTrue(centralize().clickOnWebElement(signup().getVerifyLoginButton()));
         testLog("Click on Verify & Login button","The user should be logged into the website.");
 
         // Step 5 : Verify that the user is logged into the website
-        login().getToasterMessage().getText().equals("Logged in successfully");
+        Assert.assertEquals(login().getToasterMessage().getText(), "Logged in successfully");
         testLog("Verify that the user is logged into the website","The user should be logged into the website.");
     }
 }

@@ -7,8 +7,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.DataProvider;
 
 public class LoginPO extends BaseTest {
+
+    public LoginPO(){
+        super(getDriver());
+    }
 
     public LoginPO(WebDriver driver) {
         super(driver);
@@ -106,6 +111,15 @@ public class LoginPO extends BaseTest {
         String email;
         email = faker.name().firstName() + "@yopmail.com";
         return  email;
+    }
+
+    @DataProvider(name = "user")
+    public Object[][] dpMethod(){
+        Faker faker = new Faker();
+        return new Object[][] {{faker.name().firstName() + "@yopmail.com"},
+                {faker.name().lastName() + "@yopmail.com"},
+                {faker.name().username() + "@yopmail.com"}
+        };
     }
 
 }

@@ -107,13 +107,6 @@ public class SignupPO extends BaseTest {
         return true;
     }
 
-    public String getEmail(){
-        Faker faker = new Faker();
-        String email;
-        email = faker.name().firstName() + "@yopmail.com";
-        return  email;
-    }
-
     public String getOTP() throws IOException, InterruptedException {
         String otp = "";
         Thread.sleep(3000);
@@ -147,12 +140,4 @@ public class SignupPO extends BaseTest {
             throw new RuntimeException(e);
         }
     }
-
-    public static void main(String[] args) {
-
-            // Display the default time zone
-            System.out.println("Default Time Zone: " + TimeZone.getDefault().getDisplayName(false, TimeZone.SHORT));
-
-    }
-
 }
