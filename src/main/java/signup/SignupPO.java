@@ -1,10 +1,8 @@
 package signup;
 
-import com.github.javafaker.Faker;
 import com.google.common.base.CharMatcher;
 import config.BaseTest;
 import config.CentralizePO;
-import login.LoginPO;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.openqa.selenium.By;
@@ -17,12 +15,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.mail.*;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.Properties;
-import java.util.TimeZone;
 
 public class SignupPO extends BaseTest {
 

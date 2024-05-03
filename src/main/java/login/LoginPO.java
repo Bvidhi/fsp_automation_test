@@ -11,10 +11,6 @@ import org.testng.annotations.DataProvider;
 
 public class LoginPO extends BaseTest {
 
-    public LoginPO(){
-        super(getDriver());
-    }
-
     public LoginPO(WebDriver driver) {
         super(driver);
         PageFactory.initElements(getDriver(), this);
