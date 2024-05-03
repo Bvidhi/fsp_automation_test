@@ -96,10 +96,9 @@ public class LoginPO extends BaseTest {
         return loginButton;
     }
 
-    public boolean verifyErrorForEmptyFields(){
-        if (getEmailMobile().getAttribute("class").contains("error"))
-            return true;
-        return false;
+    public boolean verifyErrorForEmptyFields() throws InterruptedException {
+        Thread.sleep(1000);
+        return getEmailMobile().getAttribute("class").contains("error");
     }
 
     public String getEmail(){
