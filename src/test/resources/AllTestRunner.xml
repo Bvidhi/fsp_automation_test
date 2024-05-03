@@ -4,7 +4,7 @@
     </listeners>
     <parameter name="selGrid" value="false"/>
     <parameter name="mailConfig" value="false"/>
-    <parameter name="headless" value="false"/>
+    <parameter name="headless" value="true"/>
     <parameter name="record" value="true"/>
     <parameter name="hubURL" value="http://172.23.8.184:4444"/>
     <parameter name="baseURL" value="https://www.caratlane.com/login"/>
