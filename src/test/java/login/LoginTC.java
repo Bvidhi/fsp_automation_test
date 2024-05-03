@@ -23,7 +23,7 @@ public class LoginTC extends BaseTest {
         }
 
         @Test(groups={"login","000","Regression"})
-        public void login_01_LoginWithBlankFields(){
+        public void login_01_LoginWithBlankFields() throws InterruptedException {
             //Step 1 : Click on the "CONTINUE TO LOG IN" button without entering any information into the "Enter Mobile Number or Email" fields.
             Assert.assertTrue(centralize().clickOnWebElement(login().getContinueLoginButton()));
             testLog("Click on the \"CONTINUE TO LOG IN\" button without entering any information into the \"Enter Mobile Number or Email\" fields.", " The alert warning message should be appear under the textboxes.");

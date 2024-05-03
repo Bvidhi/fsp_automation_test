@@ -30,7 +30,7 @@ public class SignupTC extends BaseTest {
             }
 
         @Test
-        public void signup_01_SignupWithBlankFields(){
+        public void signup_01_SignupWithBlankFields() throws InterruptedException {
             //Pre-condition : LOGIN_1 - Verify the login functionality by attempting to log in with the blank Enter Mobile Number or Email.
             new LoginTC().login_01_LoginWithBlankFields();
 
