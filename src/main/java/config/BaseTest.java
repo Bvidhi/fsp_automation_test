@@ -69,7 +69,7 @@ public class BaseTest{
             WebDriverManager.edgedriver().setup();
             EdgeOptions options = new EdgeOptions();
             if(headless){
-              //  options.addArguments("--headless");
+              //options.addArguments("--headless");
             }
             driver = new EdgeDriver(options);
             driver.manage().window().maximize();

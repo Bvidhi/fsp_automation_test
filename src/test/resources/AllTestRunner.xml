@@ -5,7 +5,7 @@
     <parameter name="selGrid" value="false"/>
     <parameter name="mailConfig" value="false"/>
     <parameter name="headless" value="true"/>
-    <parameter name="record" value="true"/>
+    <parameter name="record" value="false"/>
     <parameter name="hubURL" value="http://172.23.8.184:4444"/>
     <parameter name="baseURL" value="https://www.caratlane.com/login"/>
     <!--<groups>
@@ -14,7 +14,7 @@
         </run>
     </groups>-->
     <test name="Test Automation" parallel="methods" thread-count="1">
-        <parameter name="browserName" value="edge"/>
+        <parameter name="browserName" value="chrome"/>
         <classes>
             <class name="login.LoginTC">
                 <!--<methods>
