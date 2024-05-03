@@ -3,6 +3,8 @@ package config;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,7 +18,8 @@ public class CentralizePO extends BaseTest{
     }
 
 
-    public boolean clickOnWebElement(WebElement element){
+    public boolean clickOnWebElement(WebElement webElement){
+        WebElement element = new WebDriverWait(getDriver(),20L).until(ExpectedConditions.visibilityOf(webElement));
         element.click();
         return true;
     }

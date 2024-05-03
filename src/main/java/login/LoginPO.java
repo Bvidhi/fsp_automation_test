@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.DataProvider;
 
 public class LoginPO extends BaseTest {
@@ -97,8 +99,9 @@ public class LoginPO extends BaseTest {
     }
 
     public boolean verifyErrorForEmptyFields() throws InterruptedException {
-        Thread.sleep(3000);
-        return getEmailMobile().getAttribute("class").contains("error");
+        Thread.sleep(10000);
+        WebElement element = new WebDriverWait(getDriver(),100L).until(ExpectedConditions.visibilityOf(getEmailMobile()));
+        return element.getAttribute("class").contains("error");
     }
 
     public String getEmail(){

@@ -4,7 +4,7 @@
     </listeners>
     <parameter name="selGrid" value="false"/>
     <parameter name="mailConfig" value="false"/>
-    <parameter name="headless" value="true"/>
+    <parameter name="headless" value="false"/>
     <parameter name="record" value="false"/>
     <parameter name="hubURL" value="http://172.23.8.184:4444"/>
     <parameter name="baseURL" value="https://www.caratlane.com/login"/>
@@ -21,7 +21,7 @@
                     <include name="login.*"/>
                 </methods>-->
                 <methods>
-                    <include name="login_02_LoginWithNonRegisteredUserEmail"/>
+                    <include name="login_01_LoginWithBlankFields"/>
                 </methods>
             </class>
             <!--<class name="signup.SignupTC"/>-->
