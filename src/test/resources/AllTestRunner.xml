@@ -20,9 +20,9 @@
                 <!--<methods>
                     <include name="login.*"/>
                 </methods>-->
-                <methods>
+         <!--       <methods>
                     <include name="login_01_LoginWithBlankFields"/>
-                </methods>
+                </methods>-->
             </class>
             <!--<class name="signup.SignupTC"/>-->
         </classes>
