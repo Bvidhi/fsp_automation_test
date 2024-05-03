@@ -73,7 +73,6 @@ public class BaseTest{
             }
             driver = new EdgeDriver(options);
             driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(20L, TimeUnit.SECONDS);
         } else {
             out.println("Please provide valid browser name");
         }
@@ -126,8 +125,8 @@ public class BaseTest{
         }
         threadLocalDriver.set(driver);
         Capabilities caps = ((RemoteWebDriver) getDriver()).getCapabilities();
-        getDriver().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         getDriver().get(baseURL);
+        getDriver().manage().timeouts().implicitlyWait(30L, TimeUnit.SECONDS);
         startTest(method.getName());
         getTest().log(LogStatus.INFO, "Browser Name", caps.getBrowserName());
         getTest().log(LogStatus.INFO, caps.getBrowserName() + ": version", caps.getVersion());

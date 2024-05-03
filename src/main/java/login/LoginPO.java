@@ -97,7 +97,7 @@ public class LoginPO extends BaseTest {
     }
 
     public boolean verifyErrorForEmptyFields() throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         return getEmailMobile().getAttribute("class").contains("error");
     }
 
