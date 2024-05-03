@@ -21,7 +21,7 @@
                     <include name="login.*"/>
                 </methods>-->
                 <methods>
-                    <include name="login_01_LoginWithBlankFields"/>
+                    <include name="login_02_LoginWithNonRegisteredUserEmail"/>
                 </methods>
             </class>
             <!--<class name="signup.SignupTC"/>-->
