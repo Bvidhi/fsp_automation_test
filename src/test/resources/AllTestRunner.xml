@@ -24,7 +24,7 @@
                     <include name="login_01_LoginWithBlankFields"/>
                 </methods>-->
             </class>
-            <!--<class name="signup.SignupTC"/>-->
+            <class name="signup.SignupTC"/>
         </classes>
     </test>
 </suite>
